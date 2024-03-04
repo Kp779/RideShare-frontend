@@ -2,16 +2,21 @@
 .btn {
     display: inline-block;
     padding: 10px 20px;
-    background-color: #0070f3;
-    color: #fff;
+    background-color: #FAD737;
+    color: #000;
+    font-weight: 600;
     border: none;
     border-radius: 4px;
-    font-size: 16px;
+    font-size: 15px;
     cursor: pointer;
     margin-right: 10px;
   }
   
   .btn:hover {
-    background-color: #0060d6;
+    background-color: #FAD737;
+  }
+
+  .nbtn{
+    background-color: #fa3771;
   }
   
