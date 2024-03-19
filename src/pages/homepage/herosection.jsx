@@ -3,6 +3,7 @@ import { Container,Row,Col, Button, } from "reactstrap";
 import Heroimg from "../../assets/images/herosection.png" 
 import styles from "../../styles/styles.module.css"
 import { Img } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 
 
 // import Image from "next/image";
@@ -15,10 +16,12 @@ const Herosection = () => {
         <h2> RIDE. SHARE.</h2>
         <h1> CONNECT </h1>    
         <p>With RideShare, ditch cumbersome traffic jams and build networks as you go. Pool vehicles and serve the environment.</p>
-        
+        <Link to="/signup">
         <button className={styles.btn}>
             Signup Now
         </button>
+        </Link>
+        
        
         
         </Col> 

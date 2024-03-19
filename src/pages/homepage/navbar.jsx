@@ -1,6 +1,7 @@
 import React from "react";
 import styles from '../../styles/styles.module.css';
 import logo from '../../assets/images/logo.png';
+import { Link } from "react-router-dom";
 
 const HomeNavbar = () => {
 
@@ -16,13 +17,12 @@ const HomeNavbar = () => {
           </div>
 
           <div className="collapse navbar-collapse flex-shrink-1 bd-highlight" id="navbarSupportedContent">
-         
-              <button className={styles.btn}>SignUp</button>
-              
-              <button className={styles.btn}>Login</button>
-              
-             
-            
+              <Link to="/signup">
+               <button className={styles.btn}>SignUp</button>
+              </Link>
+              <Link to="/login">
+                <button className={styles.btn}>Login</button>
+              </Link>
           </div>
         </div>
       </nav>
