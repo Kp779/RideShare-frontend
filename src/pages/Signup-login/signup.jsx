@@ -44,7 +44,7 @@ const Register = () => {
       
       if(response.status === 200){
         setInputdata({...inputdata,fname:"",email:"",password:""});
-        navigate("/")
+        navigate("/login");
       }else{
         toast.error(response.response.data.error);
       }

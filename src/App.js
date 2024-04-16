@@ -4,7 +4,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Route, Routes } from 'react-router-dom';
 import Login from './pages/Signup-login/login';
 import Register from './pages/Signup-login/signup';
-import Dashboard from './pages/dashboard/dashboard';
+import Dashboard from './pages/User/dashboard';
 import Error from './pages/common/error';
 import Otp from './pages/Signup-login/otp';
 function App() {
