@@ -19,7 +19,7 @@ const Footer = () => {
                 <div className='content fw-semibold  text-center'>
                     <p className='m-0'>Ride . Share . Connect</p>
                     <p className='m-0'>Terms of use . Privacy Policy</p>
-                    <h6 className='m-1'>&copy; 2008 Clarify Money</h6>
+                    <h6 className='m-1'>&copy; 2024 Ride Share</h6>
                 </div>
             </footer>
         </>

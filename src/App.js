@@ -7,6 +7,8 @@ import Register from './pages/Signup-login/signup';
 import Dashboard from './pages/User/dashboard';
 import Error from './pages/common/error';
 import Otp from './pages/Signup-login/otp';
+import AdminDashboard from './pages/Admin/admindasboard';
+import '../src/styles/tailwind.css';
 function App() {
   return (
     <>
@@ -15,6 +17,7 @@ function App() {
         <Route path='/signup' element={<Register />}></Route>
         <Route path='/login' element={<Login />}></Route>
         <Route path='/dashboard' element={<Dashboard />} />
+        <Route path='/admindashboard' element={<AdminDashboard />} />
         <Route path='/user/otp' element={<Otp />} />
         <Route path='*' element={<Error />} />
 

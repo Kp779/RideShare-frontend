@@ -29,15 +29,19 @@ const Otp = () => {
         localStorage.setItem("userdbtoken", response.data.userToken);
         toast.success(response.data.message);
         setTimeout(() => {
-          navigate("/dashboard")
-        }, 5000)
+          if (location.state === 'harshpatware1505@gmail.com' || location.state === 'poorkarkompal22@gmail.com') {
+            navigate("/adminDashboard");
+          }
+           else {
+            navigate("/dashboard");
+          }
+        }, 5000);
       } else {
         toast.error(response.response.data.error)
       }
     }
   }
-
-  return (
+   return (
     <>
       <section>
         <div className="form_data">
