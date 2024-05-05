@@ -27,6 +27,7 @@ const Otp = () => {
       const response = await userVerify(data);
       if (response.status === 200) {
         localStorage.setItem("userdbtoken", response.data.userToken);
+        // response.data.userToken ---- this is the jwt token!!!
         toast.success(response.data.message);
         setTimeout(() => {
           if (location.state === 'harshpatware1505@gmail.com' || location.state === 'poorkarkompal22@gmail.com') {
@@ -35,7 +36,7 @@ const Otp = () => {
            else {
             navigate("/dashboard");
           }
-        }, 5000);
+        }, 4000);
       } else {
         toast.error(response.response.data.error)
       }
