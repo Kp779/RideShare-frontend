@@ -5,7 +5,7 @@ import axios from "axios";
 import styles from '../../styles/styles.module.css';
 import logo from '../../assets/images/logo.png';
 import profileIcon from "../../assets/images/profileIcon.svg"
-import AllRidesTable from '../common/allRidesTable'
+
 const Dashboard = () => {
 
   const navigate = useNavigate();

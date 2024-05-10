@@ -9,6 +9,7 @@ import Error from './pages/common/error';
 import Otp from './pages/Signup-login/otp';
 import AdminDashboard from './pages/Admin/admindasboard';
 import '../src/styles/tailwind.css';
+import UpdateUserForm from './pages/common/updateUserForm';
 function App() {
   return (
     <>
@@ -19,6 +20,7 @@ function App() {
         <Route path='/dashboard' element={<Dashboard />} />
         <Route path='/admindashboard' element={<AdminDashboard />} />
         <Route path='/user/otp' element={<Otp />} />
+        <Route path='/update/:id' element={<UpdateUserForm/>}/>
         <Route path='*' element={<Error />} />
 
       </Routes>
