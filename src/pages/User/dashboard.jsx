@@ -83,6 +83,8 @@ const Dashboard = () => {
             </button>
           </div>
           {/* user profile details modal */}
+          <h5 style={{color:'white'}}>Hi! Kompal</h5>
+
           <div className="collapse navbar-collapse flex-shrink-2 bd-highlight" id="navbarSupportedContent">
 
             <button type="button" className="btn btn-secondary profileBtn" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -92,11 +94,14 @@ const Dashboard = () => {
               <div class="modal-dialog">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Hello Kompal</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <div class="modal-body">
-                    ...
+                   <b> Personal Details </b><br />
+                    Name: User Kompal <br />
+                    email: kompalpoorkar.w@gmail.com <br />
+                    role: user
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -186,6 +191,7 @@ const Dashboard = () => {
         )}
       </div>
 {/* show all rides */}
+<h2>ALL RIDES</h2>
 <div className='container'>
             <table class="table">
                 <thead>
@@ -211,6 +217,40 @@ const Dashboard = () => {
                 <td>{ride.startTime}</td>
                 <td>
                   <button className="btn btn-dark btn-sm ">Send</button>
+                </td>
+             </tr>
+             ))}
+                </tbody>
+            </table>
+        </div>
+{/* Personal rides */}
+        <h2>MY RIDES</h2>
+<div className='container'>
+            <table class="table">
+                <thead>
+                    <tr className='table-dark'>
+                        <th>ID</th>
+                        <th>Author Name</th>
+                        <th>Start</th>
+                        <th>Destination</th>
+                        <th>Route</th>
+                        <th>Start Time</th>
+                        <th>Request Ride</th>
+                    </tr>
+                </thead>
+                <tbody>
+                
+                    {ride.map((ride,i=1) => (
+              <tr key={ride._id}>
+                <td scope="row">{i+1}</td>
+                <td>{ride.name}</td>
+                <td>{ride.start}</td>
+                <td>{ride.destination}</td>
+                <td>{ride.route}</td>
+                <td>{ride.startTime}</td>
+                <td>
+                  <button className="btn btn-primary btn-sm ">Edit</button>
+                  <button className="btn btn-danger btn-sm">Delete</button>
                 </td>
              </tr>
              ))}

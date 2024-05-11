@@ -81,7 +81,7 @@ import axios from "axios";
           </div>
 
           <div ml-auto flex>
-            <h5 className="text-white">NAME OF ADMIN</h5>
+            <h5 className="text-white">ADMIN HARSH</h5>
           </div>
         </div>
       </nav>
