@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from "axios";
-
+import { sendAuthorDetails } from "../../services/Apis";
 import styles from '../../styles/styles.module.css';
 import logo from '../../assets/images/logo.png';
 import profileIcon from "../../assets/images/profileIcon.svg"
 
 const Dashboard = () => {
-
-  const navigate = useNavigate();
+    const navigate = useNavigate();
   const [isPopoverOpen, setPopoverOpen] = useState(false);
   const [ride, setRide] = useState([]);
+  const [personalRides, setPersonalRides] = useState([]);
+  const [randomToken, setRandomToken] = useState('');
   const [newRide, setNewRide] = useState({
     name: "",
     start: "",
@@ -18,6 +19,7 @@ const Dashboard = () => {
     route: "",
     startTime: "",
   });
+ 
 
 // userValidation and store JWT in local storage
   const userValid = () => {
@@ -42,8 +44,17 @@ const Dashboard = () => {
   useEffect(() => {
     axios
       .get("http://localhost:4002/user/ride")
-      .then((response) => setRide(response.data));
+      .then((response) => {
+        const allRides = response.data;
+        console.log(response.data)
+        const personalRides = allRides.filter((ride) => ride.name === 'Kompal');
+        setRide(allRides);
+        setPersonalRides(personalRides);
+        console.log("Personal Rides:", personalRides);
+      });
+    
   }, []);
+
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -70,6 +81,20 @@ const Dashboard = () => {
     
   };
 
+  const requestRide = async (author) =>{
+    console.log("Requesting ride from:", author);
+    const requestRideDetails ={
+      fname : author
+    }
+    console.log(requestRideDetails)
+    const response = await sendAuthorDetails(requestRideDetails);
+    // const confirmLinkToken = response.data.randomToken;
+    // console.log("The random token is:",confirmLinkToken);
+    
+    const newRandomToken = response.data.randomToken;
+        console.log("Random token:", newRandomToken); // Log the token here
+        setRandomToken(newRandomToken);
+  };
 
   return (
     <div >
@@ -216,7 +241,7 @@ const Dashboard = () => {
                 <td>{ride.route}</td>
                 <td>{ride.startTime}</td>
                 <td>
-                  <button className="btn btn-dark btn-sm ">Send</button>
+                  <button className="btn btn-dark btn-sm " onClick={() => requestRide(ride.name)}>Send Request</button>
                 </td>
              </tr>
              ))}
@@ -240,7 +265,7 @@ const Dashboard = () => {
                 </thead>
                 <tbody>
                 
-                    {ride.map((ride,i=1) => (
+                    {personalRides.map((ride,i=1) => (
               <tr key={ride._id}>
                 <td scope="row">{i+1}</td>
                 <td>{ride.name}</td>

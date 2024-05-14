@@ -7,7 +7,7 @@ const Otp = () => {
   const [otp, setOtp] = useState("");
 
   const location = useLocation();
-
+  const [adminName,changeAdminName] = useState('');
   const navigate = useNavigate();
 
   const LoginUser = async (e) => {
@@ -30,11 +30,15 @@ const Otp = () => {
         // response.data.userToken ---- this is the jwt token!!!
         toast.success(response.data.message);
         setTimeout(() => {
-          if (location.state === 'harshpatware1505@gmail.com' || location.state === 'poorkarkompal22@gmail.com') {
+          if ( location.state === 'poorkarkompal22@gmail.com') {
+            changeAdminName("Kompal");
+            navigate("/adminDashboard");
+          } else if(location.state === 'harshpatware1505@gmail.com' ){
+            changeAdminName("Harsh");
             navigate("/adminDashboard");
           }
            else {
-            navigate("/dashboard");
+            navigate("/dashboard",);
           }
         }, 4000);
       } else {
@@ -63,4 +67,4 @@ const Otp = () => {
   )
 }
 
-export default Otp
+export default Otp;

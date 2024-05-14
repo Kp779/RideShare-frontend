@@ -10,6 +10,7 @@ import axios from "axios";
   const [users, setUsers] = useState([]);
   const navigate = useNavigate();
 
+
   const userValid = () => {
     let token = localStorage.getItem("userdbtoken");
     if (token) {
@@ -81,7 +82,7 @@ import axios from "axios";
           </div>
 
           <div ml-auto flex>
-            <h5 className="text-white">ADMIN HARSH</h5>
+            <h5 className="text-white">ADMIN DASHBOARD</h5>
           </div>
         </div>
       </nav>
@@ -111,7 +112,8 @@ import axios from "axios";
                 <td>{ride.route}</td>
                 <td>{ride.startTime}</td>
                 <td>
-                  <button className="btn btn-primary btn-sm" >Edit</button>
+                <button className="btn btn-primary btn-sm" >
+                <Link to={`/updateRide/${ride._id}`} style={{color:'white'}}>Edit</Link></button>
                   <button className="btn btn-danger btn-sm" onClick={() => deleteRide(ride._id)}>Delete</button>
                 </td>
               </tr>

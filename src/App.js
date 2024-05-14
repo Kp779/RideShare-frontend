@@ -10,6 +10,8 @@ import Otp from './pages/Signup-login/otp';
 import AdminDashboard from './pages/Admin/admindasboard';
 import '../src/styles/tailwind.css';
 import UpdateUserForm from './pages/common/updateUserForm';
+import ConfirmRide from './pages/User/confirmRide';
+import UpdateRideForm from "./pages/common/updateRideForm";
 function App() {
   return (
     <>
@@ -21,6 +23,9 @@ function App() {
         <Route path='/admindashboard' element={<AdminDashboard />} />
         <Route path='/user/otp' element={<Otp />} />
         <Route path='/update/:id' element={<UpdateUserForm/>}/>
+        <Route path='/updateRide/:id' element={<UpdateRideForm/>}/>
+
+        <Route path="/confirm-ride/:randomtoken" element={<ConfirmRide />} />
         <Route path='*' element={<Error />} />
 
       </Routes>
