@@ -87,9 +87,15 @@ import axios from "axios";
         </div>
       </nav>
 
+   <div className="m-4" style={{justifyContent:"center",display:"flex"}}>
+    <div>
+  <h3 style={{justifyContent:"center",display:"flex"}}> Welcome To Admin Dashboard </h3>
+  <p> This is the dashboard to maintain and manage the users and rides this can also used for managing roles. </p>
+  </div>
+</div>
       {/* Ride List */}
+        <div className=' rounded shadow p-4 m-5 '>
       <h2>Ride List</h2>
-      <div className='container'>
         <table className="table">
           <thead>
             <tr className='table-dark'>
@@ -112,19 +118,19 @@ import axios from "axios";
                 <td>{ride.route}</td>
                 <td>{ride.startTime}</td>
                 <td>
-                <button className="btn btn-primary btn-sm" >
-                <Link to={`/updateRide/${ride._id}`} style={{color:'white'}}>Edit</Link></button>
-                  <button className="btn btn-danger btn-sm" onClick={() => deleteRide(ride._id)}>Delete</button>
+                <button className="btn btn-info btn-sm mx-2" >
+                <Link to={`/updateRide/${ride._id}`} style={{color:'white', textDecoration:"none"}}>Edit</Link></button>
+                  <button className="btn btn-success btn-sm" onClick={() => deleteRide(ride._id)}>Delete</button>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
-
-      {/* User List */}
+       {/* User List */}
+      
+      <div className='rounded shadow p-4 m-5'>
       <h2>User List</h2>
-      <div className='container'>
         <table className="table">
           <thead>
             <tr className='table-dark'>
@@ -143,9 +149,9 @@ import axios from "axios";
                 <td>{user.email}</td>
                 <td>{user.role}</td>
                 <td>
-                  <button className="btn btn-primary btn-sm" >
-                    <Link to={`/update/${user._id}`} style={{color:'white'}}>Edit</Link></button>
-                  <button className="btn btn-danger btn-sm" onClick={() => deleteUser(user._id)}>Delete</button>
+                  <button className="btn btn-info btn-sm" >
+                    <Link to={`/update/${user._id}`} style={{color:'white',textDecoration:"none"}}>Edit</Link></button>
+                  <button className="btn btn-success btn-sm mx-2" onClick={() => deleteUser(user._id)}>Delete</button>
                 </td>
               </tr>
             ))}

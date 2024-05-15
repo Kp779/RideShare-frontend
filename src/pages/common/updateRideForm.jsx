@@ -36,11 +36,12 @@ function UpdateRideForm() {
     }
 
     return (
-        <div>
-            <h2>Edit Ride</h2>
-            <form style={{ width: '40%', marginLeft: '20rem' }}
+        <div style={{justifyContent:"center", display:"flex",marginTop:"50px"}}>
+            
+            <form className='shadow rounded w-50 p-4 ' 
              onSubmit={UpdateRide}
              >
+                <h2>Edit Ride</h2>
                 <div class="mb-3">
                     <label for="exampleInputName1" class="form-label">Author Name</label>
                     <input type="text" class="form-control" id="exampleInputName1"
