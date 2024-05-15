@@ -74,18 +74,18 @@ const AdminDashboard = () => {
 
   const filteredRides = ride.filter(
     (ride) =>
-      ride.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      ride.start.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      ride.destination.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      ride.route.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      ride.startTime.toLowerCase().includes(searchQuery.toLowerCase())
+      ride.name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      ride.start?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      ride.destination?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      ride.route?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      ride.startTime?.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   const filteredUsers = users.filter(
     (user) =>
-      user.fname.toLowerCase().includes(searchQuery2.toLowerCase()) ||
-      user.email.toLowerCase().includes(searchQuery2.toLowerCase()) ||
-      user.role.toLowerCase().includes(searchQuery2.toLowerCase())
+      user.fname?.toLowerCase().includes(searchQuery2.toLowerCase()) ||
+      user.email?.toLowerCase().includes(searchQuery2.toLowerCase()) ||
+      user.role?.toLowerCase().includes(searchQuery2.toLowerCase())
   );
 
   return (

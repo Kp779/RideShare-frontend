@@ -36,16 +36,23 @@ const CreateRideModal = ({ loggedInUser, isOpen, closeModal,setisOpen }) => {
   };
 
   const handleAddEmployee = (event) => {
+    event.preventDefault();
+    const rideData = {
+      ...newRide,
+      name: loggedInUser?.fname // Set author name as logged-in user's first name
+    };
+
     axios
-      .post("http://localhost:4002/user/ride", newRide)
+      .post("http://localhost:4002/user/ride", rideData)
       .then((response) => {
         // Handle success
+        console.log("Ride created successfully:", response.data);
+        closeModal(); // Close the modal after successful ride creation
       })
       .catch((error) => {
         // Handle error
+        console.error("Error creating ride:", error);
       });
-    setisOpen(!isOpen);
-    event.preventDefault();
   };
 
   return (
