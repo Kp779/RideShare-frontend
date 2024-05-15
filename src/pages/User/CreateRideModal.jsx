@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 const CreateRideModal = ({ loggedInUser, isOpen, closeModal,setisOpen }) => {
   const navigate = useNavigate();
+  console.log("modal",loggedInUser?.fname)
   const [newRide, setNewRide] = useState({
     name: loggedInUser?.fname || '',
     start: "",

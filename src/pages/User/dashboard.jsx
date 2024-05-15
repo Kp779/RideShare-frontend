@@ -171,7 +171,7 @@ const Dashboard = ({onRandomTokenChange, loginUser }) => {
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-success">Logout</button>
+                    <button type="button" class="btn btn-success" onClick={logoutUser}>Logout</button>
                   </div>
                 </div>
               </div>
@@ -186,7 +186,10 @@ const Dashboard = ({onRandomTokenChange, loginUser }) => {
         <Col className="col-5 mt-5 ">
         <h2> RIDE. SHARE.</h2>
         <h1> CONNECT </h1>    
-        <p>With RideShare, ditch cumbersome traffic jams and build networks as you go. Pool vehicles and serve the environment.</p>
+        <p>Get Started with your vehicle pool journey!<br />
+         <b> CREATE A RIDE! </b> <br />
+          or <b>FIND RIDE </b> for your travel need!
+        </p>
         <div >
                     <button
                       className="btn btn-outline-success w-full py-2 mt-2"
@@ -198,6 +201,7 @@ const Dashboard = ({onRandomTokenChange, loginUser }) => {
                       isOpen={isModalOpen}
                       closeModal={closeModal}
                       setisOpen={setIsModalOpen}
+                      loggedInUser={loggedInUser} 
                     />
                   </div>
         
