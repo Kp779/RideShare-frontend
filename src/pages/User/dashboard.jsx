@@ -60,20 +60,20 @@ const Dashboard = ({ onRandomTokenChange, loginUser }) => {
 
   const filteredRides = ride.filter(
     (ride) =>
-      ride.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      ride.start.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      ride.destination.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      ride.route.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      ride.startTime.toLowerCase().includes(searchQuery.toLowerCase())
+      ride.name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      ride.start?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      ride.destination?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      ride.route?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      ride.startTime?.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   const filteredPersonalRides = personalRides.filter(
     (ride) =>
-      ride.name.toLowerCase().includes(searchQuery2.toLowerCase()) ||
-      ride.start.toLowerCase().includes(searchQuery2.toLowerCase()) ||
-      ride.destination.toLowerCase().includes(searchQuery2.toLowerCase()) ||
-      ride.route.toLowerCase().includes(searchQuery2.toLowerCase()) ||
-      ride.startTime.toLowerCase().includes(searchQuery2.toLowerCase())
+      ride.name?.toLowerCase().includes(searchQuery2.toLowerCase()) ||
+      ride.start?.toLowerCase().includes(searchQuery2.toLowerCase()) ||
+      ride.destination?.toLowerCase().includes(searchQuery2.toLowerCase()) ||
+      ride.route?.toLowerCase().includes(searchQuery2.toLowerCase()) ||
+      ride.startTime?.toLowerCase().includes(searchQuery2.toLowerCase())
   );
 
   const handleInputChange2 = (e) => {
@@ -186,7 +186,7 @@ const Dashboard = ({ onRandomTokenChange, loginUser }) => {
               <button className="btn btn-outline-success w-full py-2 mt-2" onClick={openModal}>
                 Create Ride
               </button>
-              <CreateRideModal isOpen={isModalOpen} closeModal={closeModal} setisOpen={setIsModalOpen} />
+              <CreateRideModal isOpen={isModalOpen} closeModal={closeModal} setisOpen={setIsModalOpen} loggedInUser={loginUser} />
             </div>
           </Col>
           <Col className="col-7">
