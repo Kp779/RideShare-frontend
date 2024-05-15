@@ -90,7 +90,7 @@ function UpdateUserForm() {
             }}
           />
         </div>
-        <button type="submit" class="btn btn-primary-outline ">
+        <button type="submit" class="btn btn-outline-primary ">
           Submit
         </button>
       </form>

@@ -7,6 +7,11 @@ import { sendAuthorDetails } from "../../services/Apis";
 import styles from '../../styles/styles.module.css';
 import logo from '../../assets/images/logo.png';
 import profileIcon from "../../assets/images/profileIcon.svg"
+import { Container,Row,Col, Button, } from "reactstrap";
+import Heroimg from "../../assets/images/herosection.png" 
+ import { Img } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
+import CreateRideModal from './CreateRideModal';
 
 const Dashboard = ({onRandomTokenChange, loginUser }) => {
     const navigate = useNavigate();
@@ -16,7 +21,15 @@ const Dashboard = ({onRandomTokenChange, loginUser }) => {
   const [randomToken, setRandomToken] = useState('');  
   const { token } = useParams();
   const [loggedInUser, setLoggedInUser] =useState({});
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
   useEffect(()=>{
     setLoggedInUser(loginUser);
   })
@@ -136,7 +149,7 @@ const Dashboard = ({onRandomTokenChange, loginUser }) => {
             </button>
           </div>
           {/* user profile details modal */}
-          <h5 style={{color:'white'}}>Hi! {loggedInUser?.fname}</h5>
+          <h5 className='mx-2' style={{color:'white'}}>Hi! {loggedInUser?.fname}</h5>
 
           <div className="collapse navbar-collapse flex-shrink-2 bd-highlight" id="navbarSupportedContent">
 
@@ -157,8 +170,8 @@ const Dashboard = ({onRandomTokenChange, loginUser }) => {
                     role: {loggedInUser?.role}
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary"  onClick={logoutUser} >Logout</button>
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-success">Logout</button>
                   </div>
                 </div>
               </div>
@@ -166,88 +179,43 @@ const Dashboard = ({onRandomTokenChange, loginUser }) => {
           </div>
         </div>
       </nav>
+
+
+      <Container className="mt-5 bg-white" >
+    <Row >
+        <Col className="col-5 mt-5 ">
+        <h2> RIDE. SHARE.</h2>
+        <h1> CONNECT </h1>    
+        <p>With RideShare, ditch cumbersome traffic jams and build networks as you go. Pool vehicles and serve the environment.</p>
+        <div >
+                    <button
+                      className="btn btn-outline-success w-full py-2 mt-2"
+                      onClick={openModal}
+                    >
+                      Create Ride
+                    </button>
+                    <CreateRideModal
+                      isOpen={isModalOpen}
+                      closeModal={closeModal}
+                      setisOpen={setIsModalOpen}
+                    />
+                  </div>
+        
+       
+        
+        </Col> 
+        <Col className="col-7">
+        <Img className="img-fluid" src={Heroimg} alt="" />
+        </Col>
+    </Row>
+</Container>
+
       {/* create ride form */}
-      <div>
-        <button
-          onClick={handleButtonClick}
-          className="open-button btn btn-primary "
-        >
-          Create Ride
-        </button>
-        {isPopoverOpen && (
-          <div className="popover">
-            <div class="modal-header m-1 ">
-              <h5 class="modal-title fs-5">CREATE NEW RIDE</h5>
-              <button
-                type="button"
-                class="btn-close"
-                aria-label="Close"
-                onClick={handleButtonClick}
-              ></button>
-            </div>
-            <form>
-              <label className="form-label">Author Name</label>
-              <input
-                className="form-control"
-                type="text"
-                name="name"
-                placeholder={loggedInUser?.fname}
-                value={newRide.name}
-                onChange={handleInputChange}
-                disabled
-              />
-              <label className="form-label">Start</label>
-              <input
-                className="form-control"
-                type="text"
-                name="start"
-                value={newRide.start}
-                onChange={handleInputChange}
-              />
-              <label className="form-label">destination</label>
-              <input
-                className="form-control"
-                type="text"
-                name="destination"
-                value={newRide.destination}
-                onChange={handleInputChange}
-              />
-              <label className="form-label">route</label>
-              <input
-                className="form-control"
-                type="text"
-                name="route"
-                value={newRide.route}
-                onChange={handleInputChange}
-              />
-              <label className="form-label">startTime</label>
-              <input
-                className="form-control"
-                type="text"
-                name="startTime"
-                value={newRide.startTime}
-                onChange={handleInputChange}
-              />
-              <button
-                onClick={handleAddEmployee}
-                type="submit"
-                className=" btn btn-success form-button"
-              >
-                Add Ride
-              </button>
-              <button
-                onClick={handleButtonClick}
-                className="btn btn-secondary form-button"
-              >
-                Close
-              </button>
-            </form>
-          </div>
-        )}
-      </div>
-{/* show all rides */}
+   
+     {/* show all rides */}
+<div className=' rounded shadow p-4 m-5 '>
 <h2>ALL RIDES</h2>
-<div className='container'>
+
             <table class="table">
                 <thead>
                     <tr className='table-dark'>
@@ -271,7 +239,7 @@ const Dashboard = ({onRandomTokenChange, loginUser }) => {
                 <td>{ride.route}</td>
                 <td>{ride.startTime}</td>
                 <td>
-                  <button className="btn btn-dark btn-sm " onClick={() => requestRide(ride.name)}>Send Request</button>
+                  <button className="btn btn-outline-dark btn-sm " onClick={() => requestRide(ride.name)}>Send Request</button>
                 </td>
              </tr>
              ))}
@@ -279,8 +247,9 @@ const Dashboard = ({onRandomTokenChange, loginUser }) => {
             </table>
         </div>
 {/* Personal rides */}
+        <div className=' rounded shadow p-4 m-5 '>
         <h2>MY RIDES</h2>
-<div className='container'>
+
             <table class="table">
                 <thead>
                     <tr className='table-dark'>
@@ -304,8 +273,8 @@ const Dashboard = ({onRandomTokenChange, loginUser }) => {
                 <td>{ride.route}</td>
                 <td>{ride.startTime}</td>
                 <td>
-                  <button className="btn btn-primary btn-sm ">Edit</button>
-                  <button className="btn btn-danger btn-sm">Delete</button>
+                  <button className="btn btn-outline-dark btn-sm ">Edit</button>
+                  <button className="btn btn-success btn-sm mx-2">Delete</button>
                 </td>
              </tr>
              ))}

@@ -36,9 +36,9 @@ function UpdateRideForm() {
     }
 
     return (
-        <div style={{justifyContent:"center", display:"flex",marginTop:"50px"}}>
+        <div style={{justifyContent:"center", display:"flex",marginTop:"50px",background:"transparent"}}>
             
-            <form className='shadow rounded w-50 p-4 ' 
+            <form className='shadow rounded  p-4  'style={{width:"30%"}} 
              onSubmit={UpdateRide}
              >
                 <h2>Edit Ride</h2>
@@ -84,7 +84,7 @@ function UpdateRideForm() {
                         }}
                     />
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-outline-success my-2">Submit</button>
             </form>
         </div>
     )
