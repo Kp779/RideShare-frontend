@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate , useParams} from 'react-router-dom'
+import { ToastContainer, toast } from 'react-toastify';
+
 import axios from "axios";
 import { sendAuthorDetails } from "../../services/Apis";
 import styles from '../../styles/styles.module.css';
@@ -97,12 +99,14 @@ const Dashboard = ({onRandomTokenChange, loginUser }) => {
 
 
   const requestRide = async (author) =>{
+    toast.success("ride request sent!") ;
     console.log("Requesting ride from:", author);
     const requestRideDetails ={
       fname : author
     }
     console.log(requestRideDetails)
     const response = await sendAuthorDetails(requestRideDetails);
+   
     // const confirmLinkToken = response.data.randomToken;
     // console.log("The random token is:",confirmLinkToken);
     
@@ -110,8 +114,16 @@ const Dashboard = ({onRandomTokenChange, loginUser }) => {
         console.log("Random token:", newRandomToken); // Log the token here
         setRandomToken(newRandomToken);
         onRandomTokenChange(newRandomToken);
+        
   };
-
+  const logoutUser = () => {
+    // Remove the JWT token from localStorage
+    localStorage.removeItem("userdbtoken");
+    // Remove any other relevant data from localStorage
+    localStorage.removeItem("loggedUser");
+    // Redirect the user to the login page or any other desired location
+    navigate("/");
+  };
   return (
     <div >
       {/* navbar */}
@@ -146,7 +158,7 @@ const Dashboard = ({onRandomTokenChange, loginUser }) => {
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Logout</button>
+                    <button type="button" class="btn btn-primary"  onClick={logoutUser} >Logout</button>
                   </div>
                 </div>
               </div>
@@ -300,6 +312,8 @@ const Dashboard = ({onRandomTokenChange, loginUser }) => {
                 </tbody>
             </table>
         </div>
+        <ToastContainer />
+
     </div>
   )
 }
