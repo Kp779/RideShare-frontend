@@ -1,26 +1,40 @@
 import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate , useParams} from 'react-router-dom'
 import axios from "axios";
 import { sendAuthorDetails } from "../../services/Apis";
 import styles from '../../styles/styles.module.css';
 import logo from '../../assets/images/logo.png';
 import profileIcon from "../../assets/images/profileIcon.svg"
 
-const Dashboard = () => {
+const Dashboard = ({onRandomTokenChange, loginUser }) => {
     const navigate = useNavigate();
   const [isPopoverOpen, setPopoverOpen] = useState(false);
   const [ride, setRide] = useState([]);
   const [personalRides, setPersonalRides] = useState([]);
-  const [randomToken, setRandomToken] = useState('');
-  const [newRide, setNewRide] = useState({
-    name: "",
+  const [randomToken, setRandomToken] = useState('');  
+  const { token } = useParams();
+  const [loggedInUser, setLoggedInUser] =useState({});
+
+  useEffect(()=>{
+    setLoggedInUser(loginUser);
+  })
+
+  console.log("login user in dashboard:", loggedInUser?.fname);
+
+  const [newRide, setNewRide] = useState({ 
+    name: loggedInUser?.fname || '',
     start: "",
     destination: "",
     route: "",
     startTime: "",
   });
  
-
+  useEffect(() => {
+    setNewRide(prevRide => ({
+      ...prevRide,
+      name: loggedInUser?.fname || "",
+    }));
+  }, [loggedInUser]);
 // userValidation and store JWT in local storage
   const userValid = () => {
     let token = localStorage.getItem("userdbtoken");
@@ -47,7 +61,7 @@ const Dashboard = () => {
       .then((response) => {
         const allRides = response.data;
         console.log(response.data)
-        const personalRides = allRides.filter((ride) => ride.name === 'Kompal');
+        const personalRides = allRides.filter((ride) => ride.name === 'User Kompal');
         setRide(allRides);
         setPersonalRides(personalRides);
         console.log("Personal Rides:", personalRides);
@@ -81,6 +95,7 @@ const Dashboard = () => {
     
   };
 
+
   const requestRide = async (author) =>{
     console.log("Requesting ride from:", author);
     const requestRideDetails ={
@@ -94,6 +109,7 @@ const Dashboard = () => {
     const newRandomToken = response.data.randomToken;
         console.log("Random token:", newRandomToken); // Log the token here
         setRandomToken(newRandomToken);
+        onRandomTokenChange(newRandomToken);
   };
 
   return (
@@ -108,7 +124,7 @@ const Dashboard = () => {
             </button>
           </div>
           {/* user profile details modal */}
-          <h5 style={{color:'white'}}>Hi! Kompal</h5>
+          <h5 style={{color:'white'}}>Hi! {loggedInUser?.fname}</h5>
 
           <div className="collapse navbar-collapse flex-shrink-2 bd-highlight" id="navbarSupportedContent">
 
@@ -119,14 +135,14 @@ const Dashboard = () => {
               <div class="modal-dialog">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Hello Kompal</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Hello { loggedInUser?.fname}</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <div class="modal-body">
                    <b> Personal Details </b><br />
-                    Name: User Kompal <br />
-                    email: kompalpoorkar.w@gmail.com <br />
-                    role: user
+                    Name:{loggedInUser?.fname}<br />
+                    email: {loggedInUser?.email} <br />
+                    role: {loggedInUser?.role}
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -163,8 +179,10 @@ const Dashboard = () => {
                 className="form-control"
                 type="text"
                 name="name"
+                placeholder={loggedInUser?.fname}
                 value={newRide.name}
                 onChange={handleInputChange}
+                disabled
               />
               <label className="form-label">Start</label>
               <input

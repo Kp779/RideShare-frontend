@@ -2,9 +2,9 @@ import React from 'react'
 
 function ConfirmRide() {
   return (
-    <div>
+    <div className='m-2'>
       <button className="btn btn-success">Confirm Ride Request</button>
-      <button className="btn btn-danges">Reject Ride Request</button>
+      <button className="btn btn-danger">Reject Ride Request</button>
     </div>
   )
 }

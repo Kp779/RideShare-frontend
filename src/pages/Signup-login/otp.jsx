@@ -3,11 +3,10 @@ import { ToastContainer, toast } from 'react-toastify';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { userVerify } from "../../services/Apis";
 
-const Otp = () => {
+const Otp = ({onGetLoggedUser}) => {
   const [otp, setOtp] = useState("");
 
   const location = useLocation();
-  const [adminName,changeAdminName] = useState('');
   const navigate = useNavigate();
 
   const LoginUser = async (e) => {
@@ -29,16 +28,18 @@ const Otp = () => {
         localStorage.setItem("userdbtoken", response.data.userToken);
         // response.data.userToken ---- this is the jwt token!!!
         toast.success(response.data.message);
+        const loginUser = response.data.loggedUser;
+        localStorage.setItem('loggedUser', JSON.stringify(loginUser));
+        console.log("in otp file, logged user is:",loginUser);
+        onGetLoggedUser(loginUser);
         setTimeout(() => {
           if ( location.state === 'poorkarkompal22@gmail.com') {
-            changeAdminName("Kompal");
             navigate("/adminDashboard");
           } else if(location.state === 'harshpatware1505@gmail.com' ){
-            changeAdminName("Harsh");
             navigate("/adminDashboard");
           }
            else {
-            navigate("/dashboard",);
+            navigate("/dashboard");
           }
         }, 4000);
       } else {
