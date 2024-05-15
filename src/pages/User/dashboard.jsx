@@ -16,6 +16,8 @@ const Dashboard = ({ onRandomTokenChange, loginUser }) => {
   const navigate = useNavigate();
   const [isPopoverOpen, setPopoverOpen] = useState(false);
   const [ride, setRide] = useState([]);
+  const [newRide, setNewRide] = useState([]);
+
   const [searchQuery, setSearchQuery] = useState('');
   const [searchQuery2, setSearchQuery2] = useState('');
   const [personalRides, setPersonalRides] = useState([]);
