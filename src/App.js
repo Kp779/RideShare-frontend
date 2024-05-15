@@ -12,23 +12,31 @@ import '../src/styles/tailwind.css';
 import UpdateUserForm from './pages/common/updateUserForm';
 import ConfirmRide from './pages/User/confirmRide';
 import UpdateRideForm from "./pages/common/updateRideForm";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 function App() {
   
   // const randomtoken = "22f422e";
   const [randomToken, setRandomToken] = useState('');
   const [loggedUser, setLoggedUser] =useState('');
 
+  useEffect(() => {
+    // Retrieve loginUser data from local storage when the component mounts
+    const storedUser = localStorage.getItem('loggedUser');
+    if (storedUser) {
+      setLoggedUser(JSON.parse(storedUser));
+    }
+  }, []);
+
   const handleRandomToken = (token) => {
     setRandomToken(token);
     console.log("new token is:", token);
   };
 
-  const getLoggedUser = (user) =>{
-    setLoggedUser(user);
+ const getLoggedUser = (user) =>{
+  //   setLoggedUser(user);
   
-    console.log("logged user in app.js is:",user);
-  }
+  //   console.log("logged user in app.js is:",user);
+   }
   return (
     <>
     {console.log(loggedUser)}
