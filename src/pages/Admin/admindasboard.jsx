@@ -118,7 +118,7 @@ import axios from "axios";
                 <td>{ride.route}</td>
                 <td>{ride.startTime}</td>
                 <td>
-                <button className="btn btn-info btn-sm mx-2" >
+                <button className="btn btn-dark btn-sm mx-2" >
                 <Link to={`/updateRide/${ride._id}`} style={{color:'white', textDecoration:"none"}}>Edit</Link></button>
                   <button className="btn btn-success btn-sm" onClick={() => deleteRide(ride._id)}>Delete</button>
                 </td>
@@ -149,7 +149,7 @@ import axios from "axios";
                 <td>{user.email}</td>
                 <td>{user.role}</td>
                 <td>
-                  <button className="btn btn-info btn-sm" >
+                  <button className="btn btn-dark btn-sm" >
                     <Link to={`/update/${user._id}`} style={{color:'white',textDecoration:"none"}}>Edit</Link></button>
                   <button className="btn btn-success btn-sm mx-2" onClick={() => deleteUser(user._id)}>Delete</button>
                 </td>
