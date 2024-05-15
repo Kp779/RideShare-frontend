@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import React, { useEffect, useState } from 'react'
+import { useNavigate , useParams} from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify';
-import axios from 'axios';
+
+import axios from "axios";
+import { sendAuthorDetails } from "../../services/Apis";
 import styles from '../../styles/styles.module.css';
 import logo from '../../assets/images/logo.png';
 import profileIcon from '../../assets/images/profileIcon.svg';
@@ -80,26 +82,52 @@ const Dashboard = ({ onRandomTokenChange, loginUser }) => {
     setSearchQuery(e.target.value);
   };
 
-  const requestRide = async (author) => {
-    toast.success('Ride request sent!');
-    console.log('Requesting ride from:', author);
-    const requestRideDetails = {
-      fname: author,
-    };
+  const handleAddEmployee = (event) => {
+    axios
+      .post("http://localhost:4002/user/ride", newRide)
+      .then((response) => {
+        setRide([...ride, response.data]);
+        setNewRide({
+          name: "",
+          start: "",
+          destination: "",
+          route: "",
+          startTime: "",
+        });
+      });
+      setPopoverOpen(!isPopoverOpen);
+      console.log("ride created successfully")
+    event.preventDefault();
+    
+  };
+
+
+  const requestRide = async (author) =>{
+    toast.success("ride request sent!") ;
+    console.log("Requesting ride from:", author);
+    const requestRideDetails ={
+      fname : author
+    }
+    console.log(requestRideDetails)
     const response = await sendAuthorDetails(requestRideDetails);
-
+   
+    // const confirmLinkToken = response.data.randomToken;
+    // console.log("The random token is:",confirmLinkToken);
+    
     const newRandomToken = response.data.randomToken;
-    console.log('Random token:', newRandomToken);
-    setRandomToken(newRandomToken);
-    onRandomTokenChange(newRandomToken);
+        console.log("Random token:", newRandomToken); // Log the token here
+        setRandomToken(newRandomToken);
+        onRandomTokenChange(newRandomToken);
+        
   };
-
   const logoutUser = () => {
-    localStorage.removeItem('userdbtoken');
-    localStorage.removeItem('loggedUser');
-    navigate('/');
+    // Remove the JWT token from localStorage
+    localStorage.removeItem("userdbtoken");
+    // Remove any other relevant data from localStorage
+    localStorage.removeItem("loggedUser");
+    // Redirect the user to the login page or any other desired location
+    navigate("/");
   };
-
   return (
     <div>
       <nav className="navbar navbar-dark navbar-expand-lg bg-dark ">
@@ -240,12 +268,13 @@ const Dashboard = ({ onRandomTokenChange, loginUser }) => {
                   <button className="btn btn-outline-dark btn-sm">Edit</button>
                   <button className="btn btn-success btn-sm mx-2">Delete</button>
                 </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-      <ToastContainer />
+             </tr>
+             ))}
+                </tbody>
+            </table>
+        </div>
+        <ToastContainer />
+
     </div>
   );
 };
