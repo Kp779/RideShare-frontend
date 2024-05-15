@@ -17,3 +17,11 @@ export const userVerify = async(data)=>{
 export const sendAuthorDetails = async(data) =>{
     return await commonrequest("POST",`${BACKEND_URL}/user/requestRide`,data)
 }
+
+export const sendConfirmMail = async(data) =>{
+    return await commonrequest("POST",`${BACKEND_URL}/user/confirmRide`,data)
+}
+
+export const sendRejectMail = async(data) =>{
+    return await commonrequest("POST",`${BACKEND_URL}/user/rejectRide`,data)
+}
