@@ -130,6 +130,17 @@ const Dashboard = ({ onRandomTokenChange, loginUser }) => {
     // Redirect the user to the login page or any other desired location
     navigate("/");
   };
+
+  const deleteRide = (id) => {
+    const confirmed = window.confirm("Do you permanently want to delete the ride?");
+    if (confirmed) {
+      axios.delete(`http://localhost:4002/user/ride/${id}`).then(() => {
+        setRide(ride.filter((ride) => ride._id !== id));
+      }).catch((error) => {
+        console.error("Error deleting ride:", error);
+      });
+    }
+  };
   return (
     <div>
       <nav className="navbar navbar-dark navbar-expand-lg bg-dark ">
@@ -268,7 +279,7 @@ const Dashboard = ({ onRandomTokenChange, loginUser }) => {
                 <td>{ride.startTime}</td>
                 <td>
                   <button className="btn btn-outline-dark btn-sm">Edit</button>
-                  <button className="btn btn-success btn-sm mx-2">Delete</button>
+                  <button className="btn btn-success btn-sm mx-2"  onClick={() => deleteRide(ride._id)}>Delete</button>
                 </td>
              </tr>
              ))}
