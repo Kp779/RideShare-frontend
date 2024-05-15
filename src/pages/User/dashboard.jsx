@@ -166,7 +166,7 @@ const Dashboard = ({ onRandomTokenChange, loginUser }) => {
                     <button type="button" className="btn btn-outline-secondary" data-bs-dismiss="modal">
                       Close
                     </button>
-                    <button type="button" className="btn btn-success" onClick={logoutUser} onClick={logoutUser}>
+                    <button type="button" className="btn btn-success" onClick={logoutUser} >
                       Logout
                     </button>
                   </div>
