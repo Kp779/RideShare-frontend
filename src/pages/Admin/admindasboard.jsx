@@ -88,6 +88,15 @@ const AdminDashboard = () => {
       user.role?.toLowerCase().includes(searchQuery2.toLowerCase())
   );
 
+  const logoutAdmin = () => {
+    // Remove the JWT token from localStorage
+    localStorage.removeItem("userdbtoken");
+    // Remove any other relevant data from localStorage
+    localStorage.removeItem("loggedUser");
+    // Redirect the user to the login page or any other desired location
+    navigate("/");
+  };
+
   return (
     <>
       <nav className="navbar navbar-dark navbar-expand-lg bg-dark ">
@@ -102,6 +111,9 @@ const AdminDashboard = () => {
           </div>
           <div ml-auto flex>
             <h5 className="text-white">ADMIN DASHBOARD</h5>
+            <button type="button" className="btn btn-success" onClick={logoutAdmin} >
+                      Logout
+                    </button>
           </div>
         </div>
       </nav>
