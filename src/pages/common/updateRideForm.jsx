@@ -1,6 +1,7 @@
 import React, { useEffect, useNavigate, useState } from 'react'
 import axios from 'axios';
 import { useParams } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
 
 function UpdateRideForm() {
     const { id } = useParams();
@@ -26,6 +27,7 @@ function UpdateRideForm() {
     }, [])
 
     const UpdateRide =(e) =>{
+        toast.success("ride edited! Go back to Dashboard")
         e.preventDefault();
         axios.put(`http://localhost:4002/user/rideUpdate/${id}`, {name,start,destination,route,time})
         .then(result => {
@@ -86,6 +88,7 @@ function UpdateRideForm() {
                 </div>
                 <button type="submit" class="btn btn-outline-success my-2">Submit</button>
             </form>
+            <ToastContainer />
         </div>
     )
 }

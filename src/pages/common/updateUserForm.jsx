@@ -1,7 +1,7 @@
 import React, { useEffect, useNavigate, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-
+import { ToastContainer, toast } from 'react-toastify';
 function UpdateUserForm() {
   const { id } = useParams();
   const [fname, setfname] = useState("");
@@ -18,6 +18,7 @@ function UpdateUserForm() {
     // //   console.log("value set ?: ",user)
     // } catch (error) {
     //   console.error("Error fetching rides:", error);
+    toast.success("ride edited! Go back to Dashboard")
     axios
       .get(`http://localhost:4002/user/register/${id}`)
       .then((result) => {
@@ -94,6 +95,7 @@ function UpdateUserForm() {
           Submit
         </button>
       </form>
+      <ToastContainer />
     </div>
   );
 }

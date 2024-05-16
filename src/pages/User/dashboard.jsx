@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useNavigate , useParams} from 'react-router-dom'
+import { Link,useNavigate , useParams} from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify';
 
 import axios from "axios";
@@ -278,7 +278,9 @@ const Dashboard = ({ onRandomTokenChange, loginUser }) => {
                 <td>{ride.route}</td>
                 <td>{ride.startTime}</td>
                 <td>
-                  <button className="btn btn-outline-dark btn-sm">Edit</button>
+                <button className="btn btn-dark btn-sm mx-2">
+                    <Link to={`/updateRide/${ride._id}`} style={{ color: 'white', textDecoration: "none" }}>Edit</Link>
+                  </button>
                   <button className="btn btn-success btn-sm mx-2"  onClick={() => deleteRide(ride._id)}>Delete</button>
                 </td>
              </tr>
